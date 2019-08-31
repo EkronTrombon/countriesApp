@@ -1,0 +1,34 @@
+<app-header title="List of Countries"></app-header>
+
+<div class="backColorSearch">
+    <ion-searchbar placeholder="Type a country name..." debounce="500" (ionChange)="search($event)"></ion-searchbar>
+</div>
+
+<ion-content>
+    <ion-list *ngIf="countries.length === 0" no-lines>
+        <ion-item>
+            <ion-avatar slot="start">
+                <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+                <h2>
+                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                </h2>
+                <p>
+                    <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                </p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="countries.length > 0" no-lines>
+        <ion-item *ngFor="let country of countries" (click)="openCountry(country)" detail>
+            <ion-avatar slot="start">
+                <img [src]="country.flag" />
+            </ion-avatar>
+            <ion-label>
+                <h2>{{ country.name }}</h2>
+                <p>{{ country.region }}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>
