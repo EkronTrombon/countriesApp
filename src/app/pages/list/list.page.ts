@@ -3,6 +3,7 @@ import { Country } from 'src/app/interfaces/interfaces';
 import { CountriesService } from 'src/app/services/countries.service';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { CountryComponent } from '../../components/country/country.component';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,7 @@ export class ListPage implements OnInit {
   countries: Country[] = [];
   
   constructor(private countriesService: CountriesService,
+              private uiService: UiService,
               private loadingCtrl: LoadingController,
               private modalCtrl: ModalController) {}
 
@@ -26,7 +28,6 @@ export class ListPage implements OnInit {
           this.countries = resp;
           resolve(true);
         } else {
-          console.log('ERROR');
           resolve(false);
         }
       });
@@ -42,7 +43,10 @@ export class ListPage implements OnInit {
       });
       await loading.present();
       // End loading
-      const info = await this.loadCountriesInfo(key);
+      // const info = await this.loadCountriesInfo(key);
+      this.loadCountriesInfo(key).catch(err => {
+        this.uiService.showAlert('No countries founded');
+      });
       loading.dismiss();
     } else {
       this.countries = [];

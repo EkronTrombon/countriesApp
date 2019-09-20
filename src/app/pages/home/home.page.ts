@@ -63,8 +63,9 @@ export class HomePage implements OnInit {
   }
 
   setMarker(map: any, country: Country) {
+    const html = `<h4>${country.name} <small>(${country.capital})</small></h4>`;
     return new mapboxgl.Marker().setLngLat([ Number(country.latlng[1]), Number(country.latlng[0]) ])
-                                .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML('<h2 click="openCountryInfo('+ country +')">' + country.name + '</h2>'))
+                                .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(html))
                                 .addTo(map);
   }
 
