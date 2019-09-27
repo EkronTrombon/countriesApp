@@ -57,3 +57,9 @@ interface Currency {
   name: string;
   symbol: string;
 }
+
+export interface GameCountry {
+  flag?: string;
+  name?: string;
+  capital?: string;
+}

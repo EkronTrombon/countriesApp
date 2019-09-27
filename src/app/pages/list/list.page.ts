@@ -45,7 +45,7 @@ export class ListPage implements OnInit {
       // End loading
       // const info = await this.loadCountriesInfo(key);
       this.loadCountriesInfo(key).catch(err => {
-        this.uiService.showAlert('No countries founded');
+        this.uiService.showAlert('ALERT!', 'No countries founded');
       });
       loading.dismiss();
     } else {

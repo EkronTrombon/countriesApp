@@ -19,7 +19,6 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     const infoCargada = await this.loadCountriesInfo();
     if (infoCargada) {
-      console.log(this.countries);
       this.loadMap();
     } else {
       // Info no cargada
@@ -50,13 +49,11 @@ export class HomePage implements OnInit {
 
     map.on('load', () => {
       map.resize();
-      
       for (const country of this.countries) {
         if (country.latlng.length > 0) {
           this.setMarker(map, country);
         }
       }
-      
       // Add zoom and rotation controls to the map.
       map.addControl(new mapboxgl.NavigationControl());
     });
@@ -67,10 +64,6 @@ export class HomePage implements OnInit {
     return new mapboxgl.Marker().setLngLat([ Number(country.latlng[1]), Number(country.latlng[0]) ])
                                 .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(html))
                                 .addTo(map);
-  }
-
-  openCountryInfo(country) {
-    console.log('Hola!');
   }
 
 }

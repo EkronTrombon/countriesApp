@@ -8,9 +8,9 @@ export class UiService {
 
   constructor(private alertCtrl: AlertController) { }
 
-  async showAlert(message: string) {
+  async showAlert(header: string, message: string) {
     const alert = await this.alertCtrl.create({
-      header: 'Alert',
+      header,
       message,
       buttons: ['OK']
     });

@@ -18,4 +18,12 @@ export class CountriesService {
   searchCountries(key: string) {
     return this.http.get(`${URL}/name/${key}`);
   }
+
+  getCountriesCapitals() {
+    return this.http.get(`${URL}/all?fields=flag;name;capital`);
+  }
+
+  getAllCapitals() {
+    return this.http.get(`${URL}/all?fields=capital`);
+  }
 }

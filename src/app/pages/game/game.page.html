@@ -1,0 +1,25 @@
+<app-header title="Guess the capital"></app-header>
+
+<ion-content>
+    <ion-card>
+        <img class="flag" [src]="randomCountry.flag">
+        <ion-card-header>
+            <ion-card-subtitle text-center>
+                <h4>Can you guess the capital of this country?</h4>
+            </ion-card-subtitle>
+            <ion-card-title color="primary" text-center>
+                <h1>{{ randomCountry.name }}</h1>
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-radio-group>
+                <ion-item *ngFor="let capi of optCaps">
+                    <ion-label>{{ capi }}</ion-label>
+                    <ion-radio slot="start" value="{{ capi }}" (click)="validateAnswer(capi)"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+            <ion-button color="tertiary" fill="solid" expand="block" (click)="reload()">New Country</ion-button>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
