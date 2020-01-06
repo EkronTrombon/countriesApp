@@ -1,0 +1,23 @@
+<ion-content fullscreen>
+    <ion-slides [options]="slideOpts">
+        <ion-slide>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-card class="bgCard">
+                        <ion-card-content>
+                            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                                <ion-label position="floating" class="formLbl">User</ion-label>
+                                <ion-input type="text" placeholder="User Name" name="userName" [(ngModel)]="user.userName" required></ion-input>
+                                <ion-label position="floating" class="formLbl">Password</ion-label>
+                                <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" required></ion-input>
+                                <ion-button class="btnStart" expand="block" fill="solid" type="submit">Login</ion-button>
+                            </form>
+                            <br/>
+                            <ion-label>No account? <strong (click)="goRegister()">Sign Up</strong></ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

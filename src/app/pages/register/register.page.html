@@ -1,0 +1,31 @@
+<ion-content fullscreen>
+    <ion-slides [options]="slideOpts">
+        <ion-slide>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-card class="bgCard">
+                        <ion-card-content>
+                            <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                                <ion-label position="floating" class="formLbl">Name</ion-label>
+                                <ion-input type="text" placeholder="Name" name="name" [(ngModel)]="user.name" required></ion-input>
+                                <ion-label position="floating" class="formLbl">Last Name</ion-label>
+                                <ion-input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="user.lastName" required></ion-input>
+                                <ion-label position="floating" class="formLbl">User</ion-label>
+                                <ion-input type="text" placeholder="User Name" name="userName" [(ngModel)]="user.userName" required></ion-input>
+                                <ion-label position="floating" class="formLbl">Password</ion-label>
+                                <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="user.password" required></ion-input>
+                                <ion-label position="floating" class="formLbl">Your country</ion-label>
+                                <ion-select multiple="false" placeholder="Select your country" name="country" [(ngModel)]="user.country" required>
+                                    <ion-select-option *ngFor="let country of countries" [value]="country.alpha3Code">{{ country.name }}</ion-select-option>
+                                </ion-select>
+                                <ion-button class="btnStart" expand="block" fill="solid" type="submit">Sign Up</ion-button>
+                            </form>
+                            <br/>
+                            <ion-label>Already signed? <strong (click)="goLogin()">Log In</strong></ion-label>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

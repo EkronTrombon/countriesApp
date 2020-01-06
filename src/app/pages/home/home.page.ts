@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Country } from '../../interfaces/interfaces';
 import { CountriesService } from '../../services/countries.service';
+import { MenuController } from '@ionic/angular';
 
 declare var mapboxgl: any;
 
@@ -14,28 +15,24 @@ export class HomePage implements OnInit {
   @ViewChild('mapa', {static: true}) mapa;
   countries: Country[] = [];
 
-  constructor(private countriesService: CountriesService) {}
+  constructor(private countriesService: CountriesService,
+              private menuCtrl: MenuController) {}
 
   async ngOnInit() {
-    const infoCargada = await this.loadCountriesInfo();
-    if (infoCargada) {
+    await this.loadCountriesInfo();
+    if (this.countries.length > 0) {
       this.loadMap();
     } else {
       // Info no cargada
     }
   }
 
-  loadCountriesInfo() {
-    return new Promise(resolve => {
-      this.countriesService.getCountries().subscribe((resp: Country[]) => {
-        if (resp.length > 0) {
-          this.countries = resp;
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      });
-    });
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+  }
+
+  async loadCountriesInfo() {
+    this.countries = await this.countriesService.getCountries();
   }
 
   loadMap() {
@@ -60,7 +57,7 @@ export class HomePage implements OnInit {
   }
 
   setMarker(map: any, country: Country) {
-    const html = `<h4>${country.name} <small>(${country.capital})</small></h4>`;
+    const html = `<div style="text-align: center;"><h4>${country.name} <small>(${country.capital})</small></h4><img src="${country.flag}" style="width: 50px;"></div>`;
     return new mapboxgl.Marker().setLngLat([ Number(country.latlng[1]), Number(country.latlng[0]) ])
                                 .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(html))
                                 .addTo(map);

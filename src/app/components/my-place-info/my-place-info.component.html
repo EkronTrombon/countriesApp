@@ -1,0 +1,72 @@
+<ion-header no-border>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button color="tertiary" (click)="closeModal()">
+                <ion-icon slot="icon-only" size="large" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Add a new place</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form (ngSubmit)="addMyPlace(fmyPlace)" #fmyPlace="ngForm">
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="12">
+                    <div id='mapMyPlace' #mapMyPlace></div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-list>
+                        <ion-item lines="none">
+                            <ion-label color="primary" position="floating">Title</ion-label>
+                            <ion-input name="title" type="text" [(ngModel)]="myPlace.title" required></ion-input>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label color="primary" position="floating">Description</ion-label>
+                            <ion-textarea name="desc" type="text" [(ngModel)]="myPlace.desc"></ion-textarea>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label color="primary" position="floating">Date</ion-label>
+                            <ion-datetime displayFormat="MM/DD/YYYY" min="2000-01-01" max="2025-12-31" name="date" [(ngModel)]="myPlace.date"></ion-datetime>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label color="primary" position="floating">Rate place</ion-label>
+                            <ion-select placeholder="Rate your place" name="note" [(ngModel)]="myPlace.note">
+                                <ion-select-option *ngFor="let note of [1,2,3,4,5]" [value]="note">{{ note }}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-button expand="full" shape="round" (click)="cam()" color="tertiary">
+                        <ion-icon slot="start" name="camera"></ion-icon>
+                        Camera
+                    </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-button expand="full" shape="round" (click)="gallery()" color="tertiary">
+                        <ion-icon slot="start" name="images"></ion-icon>
+                        Gallery
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="3" *ngFor="let image of tempImages">
+                    <ion-card>
+                        <img [src]="image | imageSanitizer">
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-button type="submit" color="primary" expand="full">Save</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

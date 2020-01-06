@@ -1,0 +1,13 @@
+.headerDiv {
+    background-color: var(--ion-color-primary);
+    height: 100px;
+}
+
+.userAvatar {
+    position: relative;
+    top: 40%;
+    left: 33%;
+    width: 125px;
+    height: 125px;
+    border: 4px solid var(--ion-color-tertiary);
+}

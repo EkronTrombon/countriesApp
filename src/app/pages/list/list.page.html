@@ -5,23 +5,28 @@
 </div>
 
 <ion-content>
-    <ion-list *ngIf="countries.length === 0" no-lines>
-        <ion-item>
-            <ion-avatar slot="start">
+    <div *ngIf="countries.length === 0" class="noCountrySearch">
+        <h2 style="color: var(--ion-color-primary);">Looking for a country?</h2>
+        <br/>
+        <img src="assets/img/world.png" class="worldImg">
+    </div>
+    <!-- <ion-list *ngIf="countries.length === 0">
+        <ion-item lines="none" class="ion-text-center">
+            <ion-avatar slot="start ">
                 <ion-skeleton-text animated></ion-skeleton-text>
             </ion-avatar>
             <ion-label>
                 <h2>
-                    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 50% "></ion-skeleton-text>
                 </h2>
                 <p>
-                    <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                    <ion-skeleton-text animated style="width: 30% "></ion-skeleton-text>
                 </p>
             </ion-label>
         </ion-item>
-    </ion-list>
-    <ion-list *ngIf="countries.length > 0" no-lines>
-        <ion-item *ngFor="let country of countries" (click)="openCountry(country)" detail>
+    </ion-list> -->
+    <ion-list *ngIf="countries.length> 0">
+        <ion-item *ngFor="let country of countries" (click)="openCountry(country)" lines="none" detail>
             <ion-avatar slot="start">
                 <img [src]="country.flag" />
             </ion-avatar>

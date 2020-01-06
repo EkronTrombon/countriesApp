@@ -1,0 +1,43 @@
+<div class="headerDiv">
+    <ion-avatar class="userAvatar">
+        <img [src]="user.img | image: user._id">
+    </ion-avatar>
+</div>
+<ion-grid fixed>
+    <form #userForm="ngForm" (ngSubmit)="userUpdate(userForm)">
+        <br/>
+        <br/>
+        <br/>
+        <ion-row>
+            <ion-col size="12">
+                <ion-list>
+                    <ion-item lines="none">
+                        <ion-label color="primary">Name</ion-label>
+                        <ion-input type="text" name="name" [(ngModel)]="user.name" required></ion-input>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label color="primary">Last Name</ion-label>
+                        <ion-input type="text" name="lastName" [(ngModel)]="user.lastName" required></ion-input>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label color="primary">User Name</ion-label>
+                        <ion-input type="text" name="userName" [(ngModel)]="user.userName" required></ion-input>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label color="primary">Country</ion-label>
+                        <ion-select name="country" [(ngModel)]="user.country" required>
+                            <ion-select-option *ngFor="let country of countries" [value]="country.alpha3Code">{{country.name}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <br/>
+        <br/>
+        <ion-row>
+            <ion-col text-center>
+                <ion-button type="submit" color="tertiary" shape="round">Update</ion-button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-grid>

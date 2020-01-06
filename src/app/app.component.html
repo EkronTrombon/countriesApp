@@ -16,6 +16,12 @@
                     </ion-menu-toggle>
                 </ion-list>
             </ion-content>
+            <ion-footer>
+                <ion-item (click)="logOut()">
+                    <ion-icon color="primary" slot="start" name="log-out"></ion-icon>
+                    <ion-label><strong>Log Out</strong></ion-label>
+                </ion-item>
+            </ion-footer>
         </ion-menu>
         <ion-router-outlet main></ion-router-outlet>
     </ion-split-pane>

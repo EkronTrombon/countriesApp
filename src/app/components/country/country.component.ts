@@ -13,9 +13,7 @@ export class CountryComponent implements OnInit {
 
   constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() {
-    console.log('Country: ', this.country);
-  }
+  ngOnInit() {}
 
   closeModal() {
     this.modalCtrl.dismiss();

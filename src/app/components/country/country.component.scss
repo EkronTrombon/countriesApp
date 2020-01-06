@@ -1,11 +1,25 @@
 .flag {
-    border: 2px solid black;
+    height: 250px;
+    width: 100%;
 }
 
 .countryTitle {
-    font-size: 30px;
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .countrySubtitle {
+    font-size: 20px;
+    color: var(--ion-color-primary);
+    font-style: italic;
+}
+
+.titleList {
+    color: var(--ion-color-primary);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dataList {
     font-size: 20px;
 }

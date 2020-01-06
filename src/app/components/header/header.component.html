@@ -3,6 +3,9 @@
         <ion-buttons slot="start">
             <ion-menu-button color="tertiary"></ion-menu-button>
         </ion-buttons>
-        <ion-title>{{ title }}</ion-title>
+        <ion-title class="ion-text-center">{{ title }}</ion-title>
+        <ion-avatar slot="end" (click)="openUserUpdate()">
+            <img [src]="user.img | image: user._id" />
+        </ion-avatar>
     </ion-toolbar>
 </ion-header>

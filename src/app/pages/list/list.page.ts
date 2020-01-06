@@ -19,19 +19,10 @@ export class ListPage implements OnInit {
               private loadingCtrl: LoadingController,
               private modalCtrl: ModalController) {}
 
-  async ngOnInit() {}
+  ngOnInit() {}
 
-  loadCountriesInfo(key: string) {
-    return new Promise(resolve => {
-      this.countriesService.searchCountries(key).subscribe((resp: Country[]) => {
-        if (resp.length > 0) {
-          this.countries = resp;
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      });
-    });
+  async loadCountriesInfo(key: string) {
+    this.countries = await this.countriesService.searchCountries(key);
   }
 
   async search(event) {

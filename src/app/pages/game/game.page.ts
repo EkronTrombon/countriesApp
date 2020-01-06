@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/services/countries.service';
 import { GameCountry } from '../../interfaces/interfaces';
 import { UiService } from '../../services/ui.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-game',
@@ -14,10 +15,16 @@ export class GamePage implements OnInit {
   capitals = [];
   optCaps = [];
 
-  constructor(private countriesService: CountriesService, private uiService: UiService) { }
+  constructor(private countriesService: CountriesService,
+              private uiService: UiService,
+              private menuCtrl: MenuController) { }
 
   ngOnInit() {
     this.initialize();
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
   }
 
   async initialize() {
