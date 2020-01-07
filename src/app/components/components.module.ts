@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { CountryComponent } from './country/country.component';
-import { MyPlaceInfoComponent } from './my-place-info/my-place-info.component';
 import { FormsModule } from '@angular/forms';
 import { PipesModule } from '../pipes/pipes.module';
 import { UserUpdateComponent } from './user-update/user-update.component';
+import { MyPlacesComponent } from './my-places/my-places.component';
+import { PlaceComponent } from './place/place.component';
+import { PopoverComponent } from './popover/popover.component';
 
 
 
@@ -14,8 +16,10 @@ import { UserUpdateComponent } from './user-update/user-update.component';
   declarations: [
     HeaderComponent,
     CountryComponent,
-    MyPlaceInfoComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    MyPlacesComponent,
+    PlaceComponent,
+    PopoverComponent
   ],
   imports: [
     CommonModule,
@@ -26,8 +30,12 @@ import { UserUpdateComponent } from './user-update/user-update.component';
   exports: [
     HeaderComponent,
     CountryComponent,
-    MyPlaceInfoComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    MyPlacesComponent,
+    PlaceComponent
+  ],
+  entryComponents: [
+    PopoverComponent
   ]
 })
 export class ComponentsModule { }

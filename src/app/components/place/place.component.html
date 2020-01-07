@@ -1,0 +1,31 @@
+<div class="place">
+    <ion-item lines="none">
+        <ion-avatar slot="start">
+            <img src="assets/img/noUser.png" />
+        </ion-avatar>
+        <ion-label>
+            <h3 class="post-user">{{ place.user.name }} {{ place.user.lastName }}</h3>
+            <h5 class="post-title">{{ place.title }}</h5>
+        </ion-label>
+        <ion-icon slot="end" name="more" (click)="openPopover($event)"></ion-icon>
+    </ion-item>
+    <!-- Photos -->
+    <ion-slides pager="true" *ngIf="display === 'photo'">
+        <ion-slide class="image-slide" [style]="mockImg1 | imageSanitizer"></ion-slide>
+        <ion-slide class="image-slide" [style]="mockImg2 | imageSanitizer"></ion-slide>
+        <ion-slide class="image-slide" [style]="mockImg3 | imageSanitizer"></ion-slide>
+    </ion-slides>
+    <ion-slides pager="true" *ngIf="display === 'map'">
+        <ion-slide class="image-slide" [style]="mockMap | imageSanitizer"></ion-slide>
+    </ion-slides>
+    <!-- Map -->
+    <ion-item lines="none">
+        <ion-icon slot="start" name="heart-empty"></ion-icon>
+        <ion-icon slot="end" name="bookmark"></ion-icon>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-label class="ion-text-wrap">
+            {{ place.message }}
+        </ion-label>
+    </ion-item>
+</div>

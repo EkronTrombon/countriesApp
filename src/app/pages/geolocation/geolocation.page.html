@@ -1,17 +1,20 @@
 <app-header title="My places"></app-header>
 
-<ion-content>
-    <ion-list>
-        <ion-item *ngFor="let place of myPlaces" lines="none" detail>
-            <ion-avatar slot="start">
-                <img src="assets/img/star{{place.note}}.png" />
-            </ion-avatar>
-            <ion-label>
-                <h2>{{ place.title }}</h2>
-                <p>{{ place.date | date : 'MM/dd/yyyy'}}</p>
-            </ion-label>
-        </ion-item>
-    </ion-list>
+<ion-content color="light">
+    <!-- Refresher -->
+    <ion-refresher slot="fixed" (ionRefresh)="reload($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <!-- Posts -->
+    <app-my-places [myPlaces]="myPlaces"></app-my-places>
+
+    <!-- Infinite-scroll -->
+    <ion-infinite-scroll threshold="150px" (ionInfinite)="loadPlaces($event)" [disabled]="infiniteScrollEnable">
+        <ion-infinite-scroll-content loadingSpinner="bubbles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button color="tertiary" (click)="addMyPlace()">
             <ion-icon color="primary" size="large" name="add"></ion-icon>

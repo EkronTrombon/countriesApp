@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -15,9 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from './components/components.module';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { PipesModule } from './pipes/pipes.module';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 
@@ -33,9 +29,6 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
     HttpClientModule,
     ComponentsModule,
     PipesModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireStorageModule,
     IonicStorageModule.forRoot()
   ],
   providers: [
@@ -43,8 +36,7 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
     SplashScreen,
     Geolocation,
     Camera,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: FirestoreSettingsToken, useValue: {} }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

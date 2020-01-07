@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { GeolocationPage } from './geolocation.page';
 import { ComponentsModule } from '../../components/components.module';
-import { MyPlaceInfoComponent } from '../../components/my-place-info/my-place-info.component';
 
 const routes: Routes = [
   {
@@ -27,8 +26,6 @@ const routes: Routes = [
   declarations: [
     GeolocationPage
   ],
-  entryComponents: [
-    MyPlaceInfoComponent
-  ]
+  entryComponents: []
 })
 export class GeolocationPageModule {}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MyPlace } from '../../interfaces/interfaces';
-import { FirebaseService } from '../../services/firebase.service';
 import { ModalController, MenuController } from '@ionic/angular';
-import { MyPlaceInfoComponent } from '../../components/my-place-info/my-place-info.component';
+import { PostService } from '../../services/post.service';
+import { PlaceComponent } from '../../components/place/place.component';
 
 @Component({
   selector: 'app-geolocation',
@@ -12,28 +12,43 @@ import { MyPlaceInfoComponent } from '../../components/my-place-info/my-place-in
 export class GeolocationPage implements OnInit {
 
   myPlaces: MyPlace[] = [];
+  infiniteScrollEnable = false;
 
-  constructor(private firebaseService: FirebaseService,
-              private modalCtrl: ModalController,
-              private menuCtrl: MenuController) {}
+  constructor(private modalCtrl: ModalController,
+              private menuCtrl: MenuController,
+              private postService: PostService) {}
 
-  ngOnInit() {
-    this.firebaseService.getMyPlaces().subscribe(resp => {
-      console.log(resp);
-      this.myPlaces = resp;
-    });
+  async ngOnInit() {
+    this.loadPlaces();
   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(true);
   }
 
+  reload(event) {
+    this.infiniteScrollEnable = false;
+    this.myPlaces = [];
+    this.loadPlaces(event, true);
+  }
+
+  async loadPlaces(event?, pull: boolean = false) {
+    const resp = await this.postService.getPosts(pull);
+    this.myPlaces.push(...resp.posts);
+    if (event) {
+      event.target.complete();
+      if (resp.posts.length === 0) {
+        this.infiniteScrollEnable = true;
+      }
+    }
+  }
+
   async addMyPlace() {
-    const modal = await this.modalCtrl.create({
-      component: MyPlaceInfoComponent,
-      // componentProps: {}
-    });
-    return await modal.present();
+    // const modal = await this.modalCtrl.create({
+    //   component: PlaceComponent,
+    //   // componentProps: {}
+    // });
+    // return await modal.present();
   }
 
 }

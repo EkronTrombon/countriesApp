@@ -8,8 +8,9 @@ export class ImageSanitizerPipe implements PipeTransform {
 
   constructor(private domSanitizer: DomSanitizer) {}
 
-  transform(img: any): any {
-    return this.domSanitizer.bypassSecurityTrustUrl(img);
+  transform(img: string): any {
+    const domImg = `background-image: url('${img}');`;
+    return this.domSanitizer.bypassSecurityTrustStyle(domImg);
   }
 
 }

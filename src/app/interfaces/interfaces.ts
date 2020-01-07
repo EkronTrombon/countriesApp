@@ -64,21 +64,20 @@ export interface GameCountry {
   capital?: string;
 }
 
-export interface MyPlace {
-  id?: string;
-  lat?: number;
-  lng?: number;
-  title?: string;
-  desc?: string;
-  note?: number;
-  date?: Date;
-  images?: MyImage[];
+export interface RespMyPlace {
+  ok?: boolean;
+  page?: number;
+  posts?: MyPlace[];
 }
 
-export interface MyImage {
-  name?: string;
-  filepath?: string;
-  size?: number;
+export interface MyPlace {
+  _id?: string;
+  title?: string;
+  message?: string;
+  coords?: string;
+  user?: User;
+  created?: string;
+  img?: string[];
 }
 
 export interface User {
@@ -90,3 +89,9 @@ export interface User {
   country?: string;
   img?: string;
 }
+
+// export interface MyImage {
+//   name?: string;
+//   filepath?: string;
+//   size?: number;
+// }
