@@ -4,8 +4,8 @@
             <ion-menu-button color="tertiary"></ion-menu-button>
         </ion-buttons>
         <ion-title class="ion-text-center">{{ title }}</ion-title>
-        <ion-avatar slot="end" (click)="openUserUpdate()">
-            <img [src]="user.img | image: user._id" />
-        </ion-avatar>
+        <ion-buttons slot="end">
+            <ion-icon color="tertiary" slot="icon-only" name="person" (click)="goProfile()"></ion-icon>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>

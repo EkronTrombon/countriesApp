@@ -32,6 +32,11 @@ export class AppComponent {
       title: 'My places',
       url: '/geolocation',
       icon: 'map'
+    },
+    {
+      title: 'User profile',
+      url: '/profile',
+      icon: 'person'
     }
   ];
 

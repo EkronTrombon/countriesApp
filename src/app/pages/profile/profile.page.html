@@ -1,0 +1,55 @@
+<ion-header no-border>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button color="tertiary"></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">{{ user.name }} {{ user.lastName }}</ion-title>
+        <ion-buttons slot="end">
+            <ion-icon color="tertiary" slot="icon-only" name="log-out" (click)="logOut()"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="userCountry">
+        <img [src]="userCountry.flag" class="flag">
+        <ion-avatar class="userAvatar">
+            <img [src]="user.img | image: user._id">
+        </ion-avatar>
+    </div>
+    <ion-grid fixed>
+        <form #userForm="ngForm" (ngSubmit)="userUpdate(userForm)">
+            <ion-row>
+                <ion-col size="12">
+                    <ion-list>
+                        <ion-item lines="none">
+                            <ion-label color="primary"><strong>Name:</strong></ion-label>
+                            <ion-input type="text" name="name" [(ngModel)]="user.name" required></ion-input>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label color="primary"><strong>Last Name:</strong></ion-label>
+                            <ion-input type="text" name="lastName" [(ngModel)]="user.lastName" required></ion-input>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label color="primary"><strong>User Name:</strong></ion-label>
+                            <ion-input type="text" name="userName" [(ngModel)]="user.userName" required></ion-input>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-label color="primary"><strong>Country:</strong></ion-label>
+                            <ion-select name="country" [(ngModel)]="user.country" required>
+                                <ion-select-option *ngFor="let country of countries" [value]="country.alpha3Code">{{country.name}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <br/>
+            <br/>
+            <ion-row>
+                <ion-col text-center>
+                    <ion-button type="submit" color="tertiary" shape="round">Update</ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+    </ion-grid>
+</ion-content>

@@ -1,7 +1,8 @@
 <div class="place">
     <ion-item lines="none">
         <ion-avatar slot="start">
-            <img src="assets/img/noUser.png" />
+            <!-- <img src="assets/img/noUser.png" /> -->
+            <img [src]="place.user.img | image: place.user._id" />
         </ion-avatar>
         <ion-label>
             <h3 class="post-user">{{ place.user.name }} {{ place.user.lastName }}</h3>

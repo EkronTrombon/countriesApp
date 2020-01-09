@@ -1,31 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Country } from '../../interfaces/interfaces';
 import { StorageService } from '../../services/storage.service';
+import { CountriesService } from 'src/app/services/countries.service';
+import { UserService } from 'src/app/services/user.service';
+import { UiService } from 'src/app/services/ui.service';
 import { NgForm } from '@angular/forms';
-import { CountriesService } from '../../services/countries.service';
-import { UserService } from '../../services/user.service';
-import { UiService } from '../../services/ui.service';
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-update',
-  templateUrl: './user-update.component.html',
-  styleUrls: ['./user-update.component.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class UserUpdateComponent implements OnInit {
+export class ProfilePage implements OnInit {
 
   user: User = {};
   countries: Country[] = [];
+  userCountry: Country;
 
   constructor(private storageService: StorageService,
               private countriesService: CountriesService,
               private userService: UserService,
               private uiService: UiService,
-              private modalCtrl: ModalController) {}
+              private router: Router) {}
 
   async ngOnInit() {
     this.user = await this.storageService.getUserFromToken();
     this.countries = await this.countriesService.getCountries();
+    this.userCountry = await this.countriesService.getCountryByCode(this.user.country);
   }
 
   async userUpdate(userForm: NgForm) {
@@ -42,8 +44,12 @@ export class UserUpdateComponent implements OnInit {
       };
       const resp = await this.userService.updateUser(updatedUser, this.user._id);
       this.uiService.presentToast('User updated!');
-      this.modalCtrl.dismiss();
     }
+  }
+
+  logOut() {
+    this.storageService.removeStorage();
+    this.router.navigate(['/login']);
   }
 
 }

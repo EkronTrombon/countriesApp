@@ -15,13 +15,9 @@ import { ComponentsModule } from './components/components.module';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { PipesModule } from './pipes/pipes.module';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [
-    UserUpdateComponent
-  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

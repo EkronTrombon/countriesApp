@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
   { path: 'list', loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule) },
   { path: 'game', loadChildren: './pages/game/game.module#GamePageModule' },
-  { path: 'geolocation', loadChildren: './pages/geolocation/geolocation.module#GeolocationPageModule' }
+  { path: 'geolocation', loadChildren: './pages/geolocation/geolocation.module#GeolocationPageModule' },
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' }
 ];
 
 @NgModule({
